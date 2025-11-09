@@ -2,6 +2,6 @@
 
 namespace FlowTrack.Domain.Abstractions;
 
-internal interface IDomainEvent : INotification
+public interface IDomainEvent : INotification
 {
 }

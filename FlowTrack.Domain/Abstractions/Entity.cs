@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.Abstractions;
+
 public abstract class Entity
 {
     private readonly List<IDomainEvent> _domainEvents = new();
@@ -12,6 +11,8 @@ public abstract class Entity
     protected Entity(Guid id)
     {
         Id = id;
+        CreatedAt = DateTime.UtcNow;
+        UpdatedAt = CreatedAt;
     }
 
     protected Entity()
@@ -19,6 +20,15 @@ public abstract class Entity
     }
 
     public Guid Id { get; init; }
+
+    public DateTime CreatedAt { get; protected set; }
+
+    public DateTime UpdatedAt { get; protected set; }
+
+    protected void Touch()
+    {
+        UpdatedAt = DateTime.UtcNow;
+    }
 
     public IReadOnlyList<IDomainEvent> GetDomainEvents()
     {
