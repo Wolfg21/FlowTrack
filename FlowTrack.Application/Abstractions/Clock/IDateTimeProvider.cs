@@ -1,4 +1,4 @@
-﻿namespace Bookify.Application.Abstractions.Clock;
+﻿namespace FlowTrack.Application.Abstractions.Clock;
 
 public interface IDateTimeProvider
 {

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Bookify.Application.Abstractions.Data;
+namespace FlowTrack.Application.Abstractions.Data;
 
 public interface ISqlConnectionFactory
 {

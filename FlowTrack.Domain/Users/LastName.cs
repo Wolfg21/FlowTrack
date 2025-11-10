@@ -4,6 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.User;
+namespace FlowTrack.Domain.Users;
 
 public record LastName(string Value);

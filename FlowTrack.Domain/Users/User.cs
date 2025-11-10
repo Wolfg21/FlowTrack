@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.User;
+namespace FlowTrack.Domain.Users;
 public sealed class User : Entity
 {
     private User(Guid id, FirstName firstName, LastName lastName, Email email) 

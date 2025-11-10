@@ -1,4 +1,4 @@
-﻿namespace Bookify.Application.Abstractions.Email;
+﻿namespace FlowTrack.Application.Abstractions.Email;
 
 public interface IEmailService
 {

@@ -1,6 +1,6 @@
 ﻿using FlowTrack.Domain.Abstractions;
 
-namespace FlowTrack.Domain.User;
+namespace FlowTrack.Domain.Users;
 public static class UserErrors
 {
     public static Error NotFound = new(

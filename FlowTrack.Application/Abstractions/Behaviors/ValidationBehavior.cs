@@ -1,9 +1,9 @@
-﻿using Bookify.Application.Abstractions.Messaging;
-using Bookify.Application.Exceptions;
+﻿using FlowTrack.Application.Abstractions.Messaging;
+using FlowTrack.Application.Exceptions;
 using FluentValidation;
 using MediatR;
 
-namespace Bookify.Application.Abstractions.Behaviors;
+namespace FlowTrack.Application.Abstractions.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>
