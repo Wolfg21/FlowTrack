@@ -1,54 +1,40 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace FlowTrack.Domain.ValueObjects;
 
-public sealed record Currency
+public record Currency
 {
-    private static readonly Dictionary<string, Currency> Registry = new(StringComparer.OrdinalIgnoreCase);
-    private static readonly ReadOnlyDictionary<string, Currency> ReadOnlyRegistry =
-        new(Registry);
+    internal static readonly Currency None = new("");
+    public static readonly Currency Usd = new("USD");
+    public static readonly Currency Eur = new("EUR");
+    public static readonly Currency Gbp = new("GBP");
+    public static readonly Currency Cad = new("CAD");
+    public static readonly Currency Aud = new("AUD");
+    public static readonly Currency Jpy = new("JPY");
+    public static readonly Currency Chf = new("CHF");
+    public static readonly Currency Sek = new("SEK");
 
-    internal static readonly Currency None = Register("");
+    private Currency(string code) => Code = code;
 
-    public static readonly Currency Usd = Register("USD");
-    public static readonly Currency Eur = Register("EUR");
-    public static readonly Currency Gbp = Register("GBP");
-    public static readonly Currency Cad = Register("CAD");
-
-    private Currency(string code)
-    {
-        Code = code;
-    }
-
-    public string Code { get; }
+    public string Code { get; init; }
 
     public static Currency FromCode(string code)
     {
-        if (string.IsNullOrWhiteSpace(code))
-        {
-            throw new ArgumentException("Currency code can not be empty.", nameof(code));
-        }
-
-        var normalized = code.Trim().ToUpperInvariant();
-
-        if (Registry.TryGetValue(normalized, out var currency))
-        {
-            return currency;
-        }
-
-        var created = new Currency(normalized);
-        Registry[normalized] = created;
-        return created;
+        return All.FirstOrDefault(c => string.Equals(c.Code, code, StringComparison.OrdinalIgnoreCase)) ??
+               throw new ApplicationException("The currency code is invalid");
     }
 
-    public static IReadOnlyCollection<Currency> All => ReadOnlyRegistry.Values;
-
-    private static Currency Register(string code)
+    public static readonly IReadOnlyCollection<Currency> All = new[]
     {
-        var currency = new Currency(code);
-        Registry[code] = currency;
-        return currency;
-    }
+        Usd,
+        Eur,
+        Gbp,
+        Cad,
+        Aud,
+        Jpy,
+        Chf,
+        Sek
+    };
 }
