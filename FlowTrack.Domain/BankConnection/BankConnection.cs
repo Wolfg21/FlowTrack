@@ -5,5 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.Users.Events;
-public sealed record UserCreatedDomainEvent(UserId UserId) : IDomainEvent;
+namespace FlowTrack.Domain.BankConnection;
+public sealed class BankConnection : Entity<BankConnectionId>
+{
+
+}

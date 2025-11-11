@@ -4,31 +4,20 @@ using System.Linq;
 
 namespace FlowTrack.Domain.Abstractions;
 
-public abstract class Entity
+public abstract class Entity<TId>
 {
     private readonly List<IDomainEvent> _domainEvents = new();
 
-    protected Entity(Guid id)
+    protected Entity(TId id)
     {
         Id = id;
-        CreatedAt = DateTime.UtcNow;
-        UpdatedAt = CreatedAt;
     }
 
     protected Entity()
     {
     }
 
-    public Guid Id { get; init; }
-
-    public DateTime CreatedAt { get; protected set; }
-
-    public DateTime UpdatedAt { get; protected set; }
-
-    protected void Touch()
-    {
-        UpdatedAt = DateTime.UtcNow;
-    }
+    public TId Id { get; protected init; }
 
     public IReadOnlyList<IDomainEvent> GetDomainEvents()
     {

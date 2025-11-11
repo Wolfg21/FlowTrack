@@ -1,5 +1,5 @@
 ﻿using FlowTrack.Domain.Abstractions;
-using FlowTrack.Domain.User.Events;
+using FlowTrack.Domain.Users.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.Users;
-public sealed class User : Entity
+public sealed class User : Entity<UserId>
 {
-    private User(Guid id, FirstName firstName, LastName lastName, Email email) 
+    private User(UserId id, FirstName firstName, LastName lastName, Email email) 
         : base(id)
     {
         FirstName = firstName;
@@ -28,7 +28,9 @@ public sealed class User : Entity
 
     public static User Create(FirstName firstName, LastName lastName, Email email)
     {
-        var user = new User(Guid.NewGuid(), firstName, lastName, email);
+        var userId = new UserId(Guid.NewGuid());    
+
+        var user = new User(userId, firstName, lastName, email);
 
         user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id));
 
