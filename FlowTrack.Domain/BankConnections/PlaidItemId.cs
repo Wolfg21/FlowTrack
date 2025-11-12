@@ -5,4 +5,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.BankConnections;
-public sealed record PlaidItemId(string Value);
+
+public sealed record PlaidItemId(Guid Value);

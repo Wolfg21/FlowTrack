@@ -11,7 +11,7 @@ namespace FlowTrack.Domain.Institution
 {
     public sealed class Institution : Entity<InstitutionId>
     {
-        public Institution(InstitutionId id, InstitutionName name) : base(id)
+        private Institution(InstitutionId id, InstitutionName name) : base(id)
         {
             Name = name;
         }
