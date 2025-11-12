@@ -4,5 +4,5 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.BankConnections;
+namespace FlowTrack.Domain.Institution;
 public sealed record InstitutionName(string Value);

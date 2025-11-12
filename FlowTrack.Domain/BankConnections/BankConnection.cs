@@ -1,5 +1,6 @@
 ﻿using FlowTrack.Domain.Abstractions;
 using FlowTrack.Domain.BankConnections;
+using FlowTrack.Domain.Institution;
 using FlowTrack.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,14 @@ using System.Threading.Tasks;
 namespace FlowTrack.Domain.BankConnection;
 public sealed class BankConnection : Entity<BankConnectionId>
 {
-    BankConnection(BankConnectionId id, UserId userId, string bankName, DateTime connectedAt)
+    BankConnection(BankConnectionId id, UserId userId)
         : base(id)
     {
         UserId = userId;
-        BankName = bankName;
-        ConnectedAt = connectedAt;
     }
 
     public UserId UserId { get; }
     public PlaidItemId PlaidItemId { get; }
-    public InstitutionName InstitutionName { get; }
-    public BankConnectionStatus Status { get; private set; }
+    public InstitutionId InstitutionId { get; }
+
 }
