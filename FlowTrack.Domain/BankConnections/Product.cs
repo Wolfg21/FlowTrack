@@ -5,4 +5,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.BankConnections;
-public sealed record BankConnectionId(Guid Value);
+
+public sealed record Product(string Value);

@@ -3,21 +3,20 @@ using FlowTrack.Domain.BankConnections;
 using FlowTrack.Domain.BankConnections.Events;
 using FlowTrack.Domain.Institution;
 using FlowTrack.Domain.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.BankConnection;
+namespace FlowTrack.Domain.BankConnections;
+
 public sealed class BankConnection : Entity<BankConnectionId>
 {
+    private readonly List<Product> _consentedProducts;
+
     private BankConnection(
         BankConnectionId id,
         UserId userId,
         InstitutionId institutionId,
         PlaidItemId plaidItemId,
-        DateTime createdOnUtc,
+        DateTime connectedOnUtc,
+        List<Product> consentedProducts,
         DateTime? lastSuccessfulSyncOnUtc,
         DateTime? consentExpirationOnUtc)
         : base(id)
@@ -25,7 +24,11 @@ public sealed class BankConnection : Entity<BankConnectionId>
         UserId = userId;
         InstitutionId = institutionId;
         PlaidItemId = plaidItemId;
-        CreatedOnUtc = createdOnUtc;
+
+        ConnectedOnUtc = connectedOnUtc;
+
+        _consentedProducts = new List<Product>(consentedProducts);
+
         LastSuccessfulSyncOnUtc = lastSuccessfulSyncOnUtc;
         ConsentExpirationOnUtc = consentExpirationOnUtc;
     }
@@ -34,19 +37,23 @@ public sealed class BankConnection : Entity<BankConnectionId>
     public InstitutionId InstitutionId { get; private set; }
     public PlaidItemId PlaidItemId { get; private set; }
 
-    public DateTime CreatedOnUtc { get; private set; }
+    public DateTime ConnectedOnUtc { get; private set; }
     public DateTime? LastSuccessfulSyncOnUtc { get; private set; }
     public DateTime? ConsentExpirationOnUtc { get; private set; }
+
+    public IReadOnlyList<Product> ConsentedProducts => _consentedProducts.AsReadOnly();
 
     public bool IsConsentExpired() =>
         ConsentExpirationOnUtc.HasValue && ConsentExpirationOnUtc.Value < DateTime.UtcNow;
 
     public static BankConnection Create(
         UserId userId,
-        PlaidItemId plaidItemId,
         InstitutionId institutionId,
-        DateTime? lastSuccessfulSyncOnUtc = null,
-        DateTime? consentExpirationOnUtc = null)
+        PlaidItemId plaidItemId,
+        DateTime utcNow,
+        List<Product> consentedProducts,
+        DateTime? lastSuccessfulSyncOnUtc,
+        DateTime? consentExpirationOnUtc)
     {
         var id = new BankConnectionId(Guid.NewGuid());
 
@@ -55,7 +62,8 @@ public sealed class BankConnection : Entity<BankConnectionId>
             userId,
             institutionId,
             plaidItemId,
-            DateTime.UtcNow,
+            utcNow,
+            consentedProducts,
             lastSuccessfulSyncOnUtc,
             consentExpirationOnUtc);
 
