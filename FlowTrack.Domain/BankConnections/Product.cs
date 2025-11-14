@@ -6,4 +6,8 @@ using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.BankConnections;
 
-public sealed record Product(string Value);
+public enum Product
+{
+    Transactions = 1,
+    Identity = 2
+}

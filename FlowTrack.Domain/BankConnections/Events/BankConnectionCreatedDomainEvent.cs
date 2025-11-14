@@ -1,5 +1,5 @@
 ﻿using FlowTrack.Domain.Abstractions;
-using FlowTrack.Domain.BankConnection;
+using FlowTrack.Domain.BankConnections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
