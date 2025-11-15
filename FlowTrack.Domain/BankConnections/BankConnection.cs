@@ -27,12 +27,15 @@ public sealed class BankConnection : Entity<BankConnectionId>
     }
 
     public UserId UserId { get; private set; }
+
     public InstitutionId InstitutionId { get; private set; }
+    
     public PlaidItemId PlaidItemId { get; private set; }
-
+    
     public List<Product> ConsentedProducts { get; private set; } = new();
-
+    
     public DateTime ConnectedOnUtc { get; private set; }
+    
     public DateTime? ConsentExpirationOnUtc { get; private set; }
 
     public bool IsConsentExpired() =>
