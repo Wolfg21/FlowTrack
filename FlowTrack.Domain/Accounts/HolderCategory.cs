@@ -5,4 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.Accounts;
-public sealed record HolderCategory(string Value);
+public enum HolderCategory
+{
+    Personal,
+    Business,
+    Unrecognized,
+    Unknown
+}

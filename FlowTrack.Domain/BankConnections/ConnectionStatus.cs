@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace FlowTrack.Domain.BankConnections;
-
-public enum Product
+public enum ConnectionStatus
 {
-    Transactions = 1,
-    Identity = 2
+    Active,
+    Error,
+    Revoked,
+    Pending
 }

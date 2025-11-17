@@ -13,8 +13,8 @@ public sealed class Account : Entity<AccountId>
         Mask mask,
         Name name,
         OfficialName officialName,
-        Type type,
-        Subtype subtype) 
+        AccountType type,
+        AccountSubtype subtype) 
         : base(id)
     {
         Balances = balances;
@@ -39,9 +39,9 @@ public sealed class Account : Entity<AccountId>
     
     public OfficialName? OfficialName { get; private set; }
     
-    public Type Type { get; private set; }
+    public AccountType Type { get; private set; }
     
-    public Subtype? Subtype { get; private set; }
+    public AccountSubtype? Subtype { get; private set; }
 
     public void SetBalance(Balances balances) => Balances = balances;
     
@@ -52,8 +52,8 @@ public sealed class Account : Entity<AccountId>
         Mask mask,
         Name name,
         OfficialName officialName,
-        Type type,
-        Subtype subtype)
+        AccountType type,
+        AccountSubtype subtype)
     {
         var id = new AccountId(Guid.NewGuid());
 

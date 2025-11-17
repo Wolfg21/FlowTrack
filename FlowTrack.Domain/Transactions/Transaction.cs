@@ -1,5 +1,6 @@
 ﻿using FlowTrack.Domain.Abstractions;
 using FlowTrack.Domain.Accounts;
+using FlowTrack.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ public sealed class Transaction : Entity<TransactionId>
     private Transaction(
         TransactionId id,
         AccountId accountId,
-        Amount amount,
+        Money amount,
         DateTime date,
         Name name,
         Category? category,
@@ -27,14 +28,14 @@ public sealed class Transaction : Entity<TransactionId>
         Type = type;
     }
     public AccountId AccountId { get; private set; }
-    public Amount Amount { get; private set; }
+    public Money Amount { get; private set; }
     public DateTime Date { get; private set; }
     public Name Name { get; private set; }
     public Category? Category { get; private set; }
     public TransactionType Type { get; private set; }
     public static Transaction Create(
         AccountId accountId,
-        Amount amount,
+        Money amount,
         DateTime date,
         Name name,
         Category? category,
