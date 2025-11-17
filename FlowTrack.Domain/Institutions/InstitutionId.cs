@@ -4,5 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.Institution;
-public sealed record InstitutionName(string Value);
+namespace FlowTrack.Domain.Institutions;
+
+public sealed record InstitutionId(Guid Value);
+

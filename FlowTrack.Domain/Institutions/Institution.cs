@@ -1,5 +1,5 @@
 ﻿using FlowTrack.Domain.Abstractions;
-using FlowTrack.Domain.Institution.Events;
+using FlowTrack.Domain.Institutions.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.Institution
+namespace FlowTrack.Domain.Institutions
 {
     public sealed class Institution : Entity<InstitutionId>
     {

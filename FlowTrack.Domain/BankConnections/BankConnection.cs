@@ -1,7 +1,7 @@
 ﻿using FlowTrack.Domain.Abstractions;
 using FlowTrack.Domain.BankConnections;
 using FlowTrack.Domain.BankConnections.Events;
-using FlowTrack.Domain.Institution;
+using FlowTrack.Domain.Institutions;
 using FlowTrack.Domain.Users;
 
 namespace FlowTrack.Domain.BankConnections;
@@ -12,7 +12,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
         BankConnectionId id,
         UserId userId,
         InstitutionId institutionId,
-        PlaidItemId plaidItemId,
         List<Product> consentedProducts,
         DateTime connectedOnUtc,
         DateTime? consentExpirationOnUtc)
@@ -20,7 +19,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
     {
         UserId = userId;
         InstitutionId = institutionId;
-        PlaidItemId = plaidItemId;
         ConsentedProducts = consentedProducts;
         ConnectedOnUtc = connectedOnUtc;
         ConsentExpirationOnUtc = consentExpirationOnUtc;
@@ -29,8 +27,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
     public UserId UserId { get; private set; }
 
     public InstitutionId InstitutionId { get; private set; }
-    
-    public PlaidItemId PlaidItemId { get; private set; }
     
     public List<Product> ConsentedProducts { get; private set; } = new();
     
@@ -44,7 +40,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
     public static BankConnection Create(
         UserId userId,
         InstitutionId institutionId,
-        PlaidItemId plaidItemId,
         DateTime utcNow,
         List<Product> consentedProducts,
         DateTime? consentExpirationOnUtc)
@@ -55,7 +50,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
             id,
             userId,
             institutionId,
-            plaidItemId,
             consentedProducts,
             utcNow,
             consentExpirationOnUtc);
