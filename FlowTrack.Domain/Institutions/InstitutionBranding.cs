@@ -3,12 +3,17 @@
 public sealed class InstitutionBranding
 {
     public InstitutionBranding(
-        string primaryColorHex,
-        string logoUrl)
+        string? primaryColorHex,
+        string? logo,
+        string? url)
     {
         PrimaryColorHex = primaryColorHex;
-        LogoUrl = logoUrl;
+        Logo = logo;
+        Url = url;
     }
     public string? PrimaryColorHex { get; private set; }
-    public string? LogoUrl { get; private set; }
+
+    public string? Logo { get; private set; }
+
+    public string? Url { get; private set; }
 }
