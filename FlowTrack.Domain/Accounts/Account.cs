@@ -7,6 +7,7 @@ public sealed class Account : Entity<AccountId>
 {
     private Account(
         AccountId id,
+        string plaidAccountId,
         BankConnectionId bankConnectionId,
         Balances balances,
         HolderCategory holderCategory,
@@ -17,6 +18,7 @@ public sealed class Account : Entity<AccountId>
         AccountSubtype subtype) 
         : base(id)
     {
+        PlaidAccountId = plaidAccountId;
         Balances = balances;
         BankConnectionId = bankConnectionId;
         HolderCategory = holderCategory;
@@ -26,6 +28,8 @@ public sealed class Account : Entity<AccountId>
         Type = type;
         Subtype = subtype;
     }
+
+    public string PlaidAccountId { get; private set; }
 
     public BankConnectionId BankConnectionId { get; private set; }
     
@@ -46,6 +50,7 @@ public sealed class Account : Entity<AccountId>
     public void SetBalance(Balances balances) => Balances = balances;
     
     public static Account Create(
+        string plaidAccountId,
         Balances balances,
         BankConnectionId bankConnectionId,
         HolderCategory holderCategory,
@@ -59,6 +64,7 @@ public sealed class Account : Entity<AccountId>
 
         var account = new Account(
             id, 
+            plaidAccountId,
             bankConnectionId,
             balances,
             holderCategory,

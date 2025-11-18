@@ -1,6 +1,6 @@
 using System;
 
-namespace FlowTrack.Domain.ValueObjects;
+namespace FlowTrack.Domain.Shared;
 
 public sealed record Money(decimal Amount, Currency Currency)
 {

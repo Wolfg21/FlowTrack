@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FlowTrack.Domain.ValueObjects;
+namespace FlowTrack.Domain.Shared;
 
 public record Currency
 {

@@ -14,19 +14,22 @@ namespace FlowTrack.Domain.Institutions
     {
         private Institution(
             InstitutionId id,
+            string plaidInsitutionId,
             InstitutionName name,
             List<Country> countryCodes, 
             List<Product> products,
             InstitutionBranding? branding)
-            
             : base(id)
         {
+            PlaidInsitutionId = plaidInsitutionId;
             Name = name;
             CountryCodes = countryCodes;
             Products = products;
             Branding = branding;
         }
 
+        public string PlaidInsitutionId { get; private set; } 
+        
         public InstitutionName Name { get; private set; }
 
         public InstitutionBranding? Branding { get; set; }
@@ -36,6 +39,7 @@ namespace FlowTrack.Domain.Institutions
         public List<Product> Products { get; private set; }
 
         public static Institution Create(
+            string plaidInsitutionId,
             InstitutionName name,
             List<Country> countryCodes,
             List<Product> products,
@@ -45,6 +49,7 @@ namespace FlowTrack.Domain.Institutions
 
             var institution = new Institution(
                 instituitionId, 
+                plaidInsitutionId,
                 name,
                 countryCodes,
                 products,
