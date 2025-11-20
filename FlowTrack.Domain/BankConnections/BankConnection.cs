@@ -12,7 +12,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
         BankConnectionId id,
         string plaidItemId,
         UserId userId,
-        string accessToken,
         InstitutionId institutionId,
         ConnectionStatus status,
         DateTime connectedAtUtc)
@@ -21,7 +20,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
         UserId = userId;
         InstitutionId = institutionId;
         PlaidItemId = plaidItemId;
-        AccessToken = accessToken;
         Status = status;
         ConnectedAtUtc = connectedAtUtc;
         TransactionsCursor = null;
@@ -31,8 +29,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
     public string PlaidItemId { get; private set; }
 
     public UserId UserId { get; private set; }
-
-    public string AccessToken { get; private set; }
 
     public InstitutionId InstitutionId { get; private set; }
 
@@ -45,7 +41,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
     public static BankConnection Create(
         string plaidItemId,
         UserId userId,
-        string accessToken,
         InstitutionId institutionId,
         DateTime? connectedAtUtc = null)
     {
@@ -55,7 +50,6 @@ public sealed class BankConnection : Entity<BankConnectionId>
             id,
             plaidItemId,
             userId,
-            accessToken,
             institutionId,
             ConnectionStatus.Active,
             connectedAtUtc ?? DateTime.UtcNow);
