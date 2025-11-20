@@ -10,18 +10,16 @@ public sealed class Account : Entity<AccountId>
         string plaidAccountId,
         BankConnectionId bankConnectionId,
         Balances balances,
-        HolderCategory holderCategory,
-        Mask mask,
+        Mask? mask,
         Name name,
-        OfficialName officialName,
+        OfficialName? officialName,
         AccountType type,
-        AccountSubtype subtype) 
+        AccountSubtype? subtype) 
         : base(id)
     {
         PlaidAccountId = plaidAccountId;
         Balances = balances;
         BankConnectionId = bankConnectionId;
-        HolderCategory = holderCategory;
         Mask = mask;
         Name = name;
         OfficialName = officialName;
@@ -34,8 +32,6 @@ public sealed class Account : Entity<AccountId>
     public BankConnectionId BankConnectionId { get; private set; }
     
     public Balances Balances { get; private set; }
-    
-    public HolderCategory? HolderCategory { get; private set; } 
     
     public Mask? Mask { get; private set; } 
    
@@ -53,12 +49,11 @@ public sealed class Account : Entity<AccountId>
         string plaidAccountId,
         Balances balances,
         BankConnectionId bankConnectionId,
-        HolderCategory holderCategory,
-        Mask mask,
+        Mask? mask,
         Name name,
-        OfficialName officialName,
+        OfficialName? officialName,
         AccountType type,
-        AccountSubtype subtype)
+        AccountSubtype? subtype)
     {
         var id = new AccountId(Guid.NewGuid());
 
@@ -67,7 +62,6 @@ public sealed class Account : Entity<AccountId>
             plaidAccountId,
             bankConnectionId,
             balances,
-            holderCategory,
             mask,
             name,
             officialName,
