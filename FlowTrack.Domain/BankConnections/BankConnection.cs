@@ -2,6 +2,7 @@
 using FlowTrack.Domain.BankConnections;
 using FlowTrack.Domain.BankConnections.Events;
 using FlowTrack.Domain.Institutions;
+using FlowTrack.Domain.Shared;
 using FlowTrack.Domain.Users;
 
 namespace FlowTrack.Domain.BankConnections;
@@ -10,7 +11,7 @@ public sealed class BankConnection : Entity<BankConnectionId>
 {
     private BankConnection(
         BankConnectionId id,
-        string plaidItemId,
+        ExternalId plaidItemId,
         UserId userId,
         InstitutionId institutionId,
         ConnectionStatus status,
@@ -26,7 +27,7 @@ public sealed class BankConnection : Entity<BankConnectionId>
     }
 
 
-    public string PlaidItemId { get; private set; }
+    public ExternalId PlaidItemId { get; private set; }
 
     public UserId UserId { get; private set; }
 
@@ -39,7 +40,7 @@ public sealed class BankConnection : Entity<BankConnectionId>
     public DateTime ConnectedAtUtc { get; private set; }
 
     public static BankConnection Create(
-        string plaidItemId,
+        ExternalId plaidItemId,
         UserId userId,
         InstitutionId institutionId,
         DateTime? connectedAtUtc = null)

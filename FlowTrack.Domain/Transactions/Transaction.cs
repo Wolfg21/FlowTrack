@@ -1,6 +1,7 @@
 ﻿using FlowTrack.Domain.Abstractions;
 using FlowTrack.Domain.Accounts;
 using FlowTrack.Domain.Shared;
+using FlowTrack.Domain.Transactions.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ public sealed class Transaction : Entity<TransactionId>
 {
     private Transaction(
         TransactionId id,
-        string plaidTransactionId,
+        ExternalId plaidTransactionId,
         AccountId accountId,
         Money amount,
         DateTime date,
@@ -32,7 +33,7 @@ public sealed class Transaction : Entity<TransactionId>
         PaymentChannel = paymentChannel;
     }
 
-    public string PlaidTransactionId { get; private set; }
+    public ExternalId PlaidTransactionId { get; private set; }
     
     public AccountId AccountId { get; private set; }
     
@@ -49,7 +50,7 @@ public sealed class Transaction : Entity<TransactionId>
     public PaymentChannel PaymentChannel { get; private set; }
     
     public static Transaction Create(
-        string plaidTransactionId,
+        ExternalId plaidTransactionId,
         AccountId accountId,
         Money amount,
         DateTime date,
@@ -70,6 +71,8 @@ public sealed class Transaction : Entity<TransactionId>
             merchantName,
             category,
             paymentChannel);
+
+        transaction.RaiseDomainEvent(new TransactionCreatedDomainEvent(transaction.Id));
 
         return transaction;
     }

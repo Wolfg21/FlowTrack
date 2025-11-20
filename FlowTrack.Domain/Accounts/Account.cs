@@ -1,13 +1,14 @@
 ﻿using FlowTrack.Domain.Abstractions;
 using FlowTrack.Domain.Accounts.Events;
 using FlowTrack.Domain.BankConnections;
+using FlowTrack.Domain.Shared;
 
 namespace FlowTrack.Domain.Accounts;
 public sealed class Account : Entity<AccountId>
 {
     private Account(
         AccountId id,
-        string plaidAccountId,
+        ExternalId plaidAccountId,
         BankConnectionId bankConnectionId,
         Balances balances,
         Mask? mask,
@@ -27,7 +28,7 @@ public sealed class Account : Entity<AccountId>
         Subtype = subtype;
     }
 
-    public string PlaidAccountId { get; private set; }
+    public ExternalId PlaidAccountId { get; private set; }
 
     public BankConnectionId BankConnectionId { get; private set; }
     
@@ -46,7 +47,7 @@ public sealed class Account : Entity<AccountId>
     public void SetBalance(Balances balances) => Balances = balances;
     
     public static Account Create(
-        string plaidAccountId,
+        ExternalId plaidAccountId,
         Balances balances,
         BankConnectionId bankConnectionId,
         Mask? mask,
