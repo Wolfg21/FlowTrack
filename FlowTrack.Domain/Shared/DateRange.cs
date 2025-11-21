@@ -1,6 +1,6 @@
 using System;
 
-namespace FlowTrack.Domain.ValueObjects;
+namespace FlowTrack.Domain.Shared;
 
 public sealed class DateRange
 {

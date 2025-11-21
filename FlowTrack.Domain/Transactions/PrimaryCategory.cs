@@ -1,0 +1,21 @@
+﻿namespace FlowTrack.Domain.Transactions;
+
+public enum PrimaryCategory
+{
+    INCOME,
+    TRANSFER_IN,
+    TRANSFER_OUT,
+    LOAN_PAYMENTS,
+    BANK_FEES,
+    ENTERTAINMENT,
+    FOOD_AND_DRINK,
+    GENERAL_MERCHANDISE,
+    HOME_IMPROVEMENT,
+    MEDICAL,
+    PERSONAL_CARE,
+    TRANSPORTATION,
+    TRAVEL,
+    UTILITIES,
+    SERVICES,
+    TAXES
+}

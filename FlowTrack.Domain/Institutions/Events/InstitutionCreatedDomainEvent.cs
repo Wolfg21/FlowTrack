@@ -6,5 +6,5 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlowTrack.Domain.Institution.Events;
+namespace FlowTrack.Domain.Institutions.Events;
 public sealed record InstitutionCreatedDomainEvent(InstitutionId InstitutionId) : IDomainEvent;

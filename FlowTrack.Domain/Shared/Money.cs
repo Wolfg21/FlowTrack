@@ -1,6 +1,6 @@
 using System;
 
-namespace FlowTrack.Domain.ValueObjects;
+namespace FlowTrack.Domain.Shared;
 
 public sealed record Money(decimal Amount, Currency Currency)
 {
@@ -24,6 +24,9 @@ public sealed record Money(decimal Amount, Currency Currency)
 
     public static Money From(decimal amount, string currencyCode) =>
         new(amount, Currency.FromCode(currencyCode));
+
+    public static Money FromPlaid(decimal amount, string? isoCurrencyCode, string? unofficialCurrencyCode) =>
+        new(amount, Currency.FromPlaid(isoCurrencyCode, unofficialCurrencyCode));
 
     public bool IsZero() => Amount == 0;
 
