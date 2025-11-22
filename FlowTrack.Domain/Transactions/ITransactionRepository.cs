@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FlowTrack.Domain.Transactions;
 public interface ITransactionRepository
 {
-    Task<Transaction?> GetByPlaidTransactionIdAsync(ExternalId plaidTransactionId, CancellationToken cancellationToken = default);
+    Task<Transaction?> GetByPlaidIdAsync(ExternalId plaidTransactionId, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<Transaction>> GetByAccountAsync(
         AccountId accountId,
         DateRange? dateRange = default,

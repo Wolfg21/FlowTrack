@@ -10,7 +10,7 @@ namespace FlowTrack.Domain.BankConnections;
 public interface IBankConnectionRepository
 {
     Task<BankConnection?> GetByIdAsync(BankConnectionId id, CancellationToken cancellationToken = default);
-    Task<BankConnection?> GetByPlaidItemIdAsync(ExternalId plaidItemId, CancellationToken cancellationToken = default);
+    Task<BankConnection?> GetByPlaidIdAsync(ExternalId plaidItemId, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<BankConnection>> GetByUserAsync(UserId userId, CancellationToken cancellationToken = default);
     void Add(BankConnection connection);
     Task UpdateCursorAsync(BankConnectionId id, string? nextCursor, CancellationToken cancellationToken = default);
