@@ -2,7 +2,6 @@
 using FlowTrack.Application.Abstractions.Messaging;
 using FlowTrack.Domain.Abstractions;
 using FlowTrack.Domain.Users;
-using Microsoft.IdentityModel.Tokens;
 
 namespace FlowTrack.Application.BankConnections.GenerateLinkTokens;
 internal sealed class GenerateLinkTokenCommandHandler : ICommandHandler<GenerateLinkTokenCommand, LinkTokenResponse>
@@ -24,6 +23,6 @@ internal sealed class GenerateLinkTokenCommandHandler : ICommandHandler<Generate
 
         var token = await _linkTokenService.GenerateLinkTokenAsync(user.Id, cancellationToken);
 
-        return Result.Success(new LinkTokenResponse(token.LinkToken, token.ExpiresAtUtc));
+        return Result.Success(token);
     }
 }
